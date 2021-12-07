@@ -7052,6 +7052,7 @@ __metadata:
     "@types/react": ^17
     "@types/react-dom": ^17
     "@types/testing-library__jest-dom": ^5
+    eslint-config-react-app: ^6.0.0
     react: ^17.0.2
     react-dom: ^17.0.2
     react-scripts: 4.0.3
