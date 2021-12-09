@@ -1,7 +1,7 @@
 {
-	"name": "scratch-react",
+	"name": "games-at-home",
 	"version": "1.0.0",
-	"description": "",
+	"description": "A steam game picker.",
 	"main": "webpack.config.js",
   "private": true,
 	"scripts": {
@@ -10,8 +10,8 @@
 		"start": "node server/server.js",
 		"build": "webpack --config webpack.config.js --watch"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": ["games","steam","randomizer","random","video games", "pc games"],
+	"author": "Suzanne Cabral",
 	"license": "ISC",
 	"dependencies": {
 		"@babel/core": "^7.16.0",
