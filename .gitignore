@@ -24,3 +24,5 @@ yarn-error.log*
 
 yarn.build.json
 install-state.gz
+
+dummyData/

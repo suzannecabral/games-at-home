@@ -5,7 +5,11 @@ function App() {
 		<div className="App">
 			<div className="panel">
 				<p>Enter your steam url:</p>
-				<p class="caption">(Must be set to public)</p>
+				<p class="caption">
+					(Must be set to public) It looks like this:
+					https://steamcommunity.com/profiles/[[
+					<strong>thislongnumberhere</strong>]
+				</p>
 				<input />
 				<button class="secondary-button">Save</button>
 			</div>
