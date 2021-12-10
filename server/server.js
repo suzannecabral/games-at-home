@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
-const port = 3000;
 const dotenv = require("dotenv");
 const axios = require("axios");
 
 dotenv.config();
+const PORT = process.env.DEV_PORT;
 
 // this turns req to json
 app.use(express.json());
@@ -26,10 +26,21 @@ app.post("/api/games", (req, res) => {
 		})
 		.catch((error) => {
 			console.error(error);
-			res.status(400).send({ message: "Network error" });
+			res.status(400).send({ message: "Error requesting Steam data." });
 		});
 });
 
-app.listen(port, () => {
-	console.log(`Example app listening at http://localhost:${port}`);
-});
+if (process.env.ENVIRONMENT === "development") {
+	app.listen(PORT, () => {
+		console.log(`Development app listening at port ${PORT}`);
+	});
+} else {
+	app.listen(PORT, () => {
+		console.log(`Production app listening at port ${PORT}`);
+	});
+}
+// else {
+// 	app.listen(DEV_PORT, () => {
+// 		console.log(`Development app listening at http://localhost:${DEV_PORT}`);
+// 	});
+// }
