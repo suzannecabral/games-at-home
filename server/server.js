@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const axios = require("axios");
 
 dotenv.config();
-const PORT = process.env.DEV_PORT;
+const PORT = process.env.PORT || 3000;
 
 // this turns req to json
 app.use(express.json());
