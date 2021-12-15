@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import GameCard from "./components/GameCard";
 import "./styles.css";
 
 const App = () => {
@@ -16,6 +17,13 @@ const App = () => {
 			});
 		});
 	};
+
+	React.useEffect(() => {
+		// renter game cards on change
+		steamGames.map((game) => {
+			return <GameCard game={game} />;
+		});
+	}, [steamGames]);
 
 	const handleClick = () => {
 		setLoaded(false);
@@ -46,6 +54,7 @@ const App = () => {
 				<h2>Your Games {totalGames}</h2>
 				<p>Status: {errorStatus ? "Error" : "Ok"}</p>
 				<p>Done Loading: {loaded ? "Yes" : "No"}</p>
+				<GameCard game={steamGames[0]} />
 				{/* {
           steamGames && {
             steamGames.map((game)=>{return <p>{game.name}</p>});
