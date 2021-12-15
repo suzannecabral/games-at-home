@@ -4,14 +4,19 @@ const dotenv = require("dotenv");
 const axios = require("axios");
 
 dotenv.config();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
+const TEST_ID = process.env.TEST_ID || null;
 
 // this turns req to json
 app.use(express.json());
 app.use(express.static("dist"));
 
-app.get("/", (req, res) => {
-	res.send("Api is running...!");
+app.get("/api", (req, res) => {
+	res.send("Api is running!");
+});
+
+app.get("/testid", (req, res) => {
+	res.status(200).json(TEST_ID);
 });
 
 app.post("/api/games", (req, res) => {

@@ -18,12 +18,21 @@ const App = () => {
 		});
 	};
 
+	const loadTestId = () => {};
+
+	// React.useEffect(() => {
+	// 	// renter game cards on change
+	// 	steamGames.map((game) => {
+	// 		return <GameCard game={game} />;
+	// 	});
+	// }, [steamGames]);
+
 	React.useEffect(() => {
-		// renter game cards on change
-		steamGames.map((game) => {
-			return <GameCard game={game} />;
-		});
-	}, [steamGames]);
+		axios
+			.get("/api/testid")
+			.then((data) => console.log(data))
+			.catch((err) => console.log(err));
+	}, []);
 
 	const handleClick = () => {
 		setLoaded(false);
