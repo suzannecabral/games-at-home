@@ -15,16 +15,15 @@ app.get("/api", (req, res) => {
 	res.send("Api is running!");
 });
 
-app.get("/testid", (req, res) => {
+app.get("/api/testid", (req, res) => {
 	res.status(200).json(TEST_ID);
 });
 
 app.post("/api/games", (req, res) => {
 	const { steamId } = req.body;
-	console.log(steamId);
 	axios
 		.get(
-			`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${process.env.STEAM_API_KEY}&steamid=${steamId}&format=json&include_appinfo=true`
+			`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${process.env.STEAM_API_KEY}&steamid=${steamId}&format=json&include_appinfo=true&include_played_free_games=false`
 		)
 		.then((response) => {
 			res.status(201).json(response.data);
@@ -34,6 +33,8 @@ app.post("/api/games", (req, res) => {
 			res.status(400).send({ message: "Error requesting Steam data." });
 		});
 });
+
+app.post("/api/games/detailed");
 
 if (process.env.ENVIRONMENT === "development") {
 	app.listen(PORT, () => {

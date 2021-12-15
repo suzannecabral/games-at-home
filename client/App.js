@@ -10,27 +10,24 @@ const App = () => {
 	const [errorStatus, setErrorStatus] = React.useState(false);
 	const [loaded, setLoaded] = React.useState(true);
 
-	const loadSteamGames = (allGames) => {
-		games.forEach((row) => {
-			row.forEach((game) => {
-				setSteamGames([...steamGames, game]);
-			});
-		});
-	};
-
-	const loadTestId = () => {};
-
-	// React.useEffect(() => {
-	// 	// renter game cards on change
-	// 	steamGames.map((game) => {
-	// 		return <GameCard game={game} />;
+	// const loadSteamGames = (allGames) => {
+	// 	games.forEach((row) => {
+	// 		row.forEach((game) => {
+	// 			setSteamGames([...steamGames, game]);
+	// 		});
 	// 	});
-	// }, [steamGames]);
+	// };
 
+	// TODO
+	// DELETEME
+	// Testing Only: enter test ID automatically
 	React.useEffect(() => {
 		axios
 			.get("/api/testid")
-			.then((data) => console.log(data))
+			.then((res) => {
+				setSteamId(res.data);
+				document.getElementById("testIdInput").value(res.data);
+			})
 			.catch((err) => console.log(err));
 	}, []);
 
@@ -57,18 +54,19 @@ const App = () => {
 	return (
 		<div className="container">
 			<h1>Pick a Game:</h1>
-			<input value={steamId} onChange={(e) => setSteamId(e.target.value)} />
+			<input
+				id="steamIdInput"
+				value={steamId}
+				onChange={(e) => setSteamId(e.target.value)}
+			/>
 			<button onClick={handleClick}>Submit</button>
 			<div>
 				<h2>Your Games {totalGames}</h2>
 				<p>Status: {errorStatus ? "Error" : "Ok"}</p>
 				<p>Done Loading: {loaded ? "Yes" : "No"}</p>
-				<GameCard game={steamGames[0]} />
-				{/* {
-          steamGames && {
-            steamGames.map((game)=>{return <p>{game.name}</p>});
-          }
-        } */}
+				{steamGames.map((game) => {
+					return <GameCard game={game} key={game.appid} />;
+				})}
 			</div>
 		</div>
 	);
